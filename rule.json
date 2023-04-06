@@ -1,0 +1,125 @@
+{
+	"joins": [
+		{
+			"table_left": "tmp_tos.vsa_nd_nds_r1",
+			"entity_left": "fid",
+			"table_right": "tmp_tos.vsa_nd_nds_r3",
+			"entity_right": "fid",
+			"type": "inner"
+		},
+		{
+			"table_left": "tmp_tos.vsa_nd_nds_r1",
+			"entity_left": "year",
+			"table_right": "tmp_tos.vsa_nd_nds_r2",
+			"entity_right": "year",
+			"type": "inner"
+		},
+		{
+			"table_left": "tmp_tos.vsa_nd_nds_r1",
+			"entity_left": "quarter",
+			"table_right": "tmp_tos.vsa_nd_nds_r2",
+			"entity_right": "quarter",
+			"type": "inner"
+		}
+	],
+	"variables": [
+		{
+			"name": "fid",
+			"table": "tmp_tos.vsa_nd_nds_r1",
+			"field": "fid",
+			"type": "BigDecimal"
+		},
+		{
+			"name": "year",
+			"table": "tmp_tos.vsa_nd_nds_r1",
+			"field": "year",
+			"type": "BigDecimal"
+		},
+		{
+			"name": "quarter",
+			"table": "tmp_tos.vsa_nd_nds_r1",
+			"field": "quarter",
+			"type": "BigDecimal"
+		},
+		{
+			"name": "s40",
+			"table": "tmp_tos.vsa_nd_nds_r1",
+			"field": "s40",
+			"type": "BigDecimal"
+		},
+		{
+			"name": "date_receipt",
+			"table": "tmp_tos.vsa_nd_nds_r1",
+			"field": "date_receipt",
+			"type": "Date"
+		},
+		{
+			"name": "date_creation",
+			"table": "tmp_tos.vsa_nd_nds_r3",
+			"field": "date_creation",
+			"type": "Date"
+		},
+		{
+			"name": "s120_3",
+			"table": "tmp_tos.vsa_nd_nds_r3",
+			"field": "s120_3",
+			"type": "BigDecimal"
+		}
+	],
+	"parameters": [
+		{
+			"name": "p1",
+			"value": "s40-s120_3",
+			"type": "BigDecimal"
+		}
+	],
+	"criterias": [
+		{
+			"id": 100,
+			"parameter": "date_creation",
+			"operator": "lt",
+			"value": "{date_receipt}"
+		},
+		{
+			"id": 101,
+			"parameter": "s120_3",
+			"operator": "lt",
+			"value": "{s40}"
+		},
+		{
+			"id": 102,
+			"parameter": "p1",
+			"operator": "lt",
+			"value": 5000
+		}
+	],
+	"tree": [
+		{
+			"id": 103,
+			"criterias": [
+				100,
+				101,
+				102
+			],
+			"operator": "AND",
+			"nodes": [
+				{
+					"condition": "True",
+					"id": 999
+				},
+				{
+					"condition": "False",
+					"id": 998
+				}
+			]
+		},
+		{
+			"id": 999,
+			"loss": "1000.0"
+		},
+		{
+			"id": 998,
+			"loss": "0.0"
+		}
+	]
+}
